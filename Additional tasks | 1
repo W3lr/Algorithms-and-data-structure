@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Read the capacities of the containers and the desired amount of water to measure.
+    int a, b, c, d;
+    cout << "Enter the capacities of the containers (in increasing order): ";
+    cin >> b >> a >> c;
+    cout << "Enter the amount of water to measure (less than or equal to " << a << "): ";
+    cin >> d;
+
+    // We assume that the largest container is full, and the other two are empty.
+    int x = c, y = 0, z = 0;
+
+    // We pour water from the largest container to the other two,
+    // maximizing the amount poured and the amount emptied.
+    while (x > d && y < b) {
+        int t = min(x - d, b - y);
+        x -= t;
+        y += t;
+        cout << "Pour " << t << " litres from container C into container B" << endl;
+    }
+    while (x > d && z < a) {
+        int t = min(x - d, a - z);
+        x -= t;
+        z += t;
+        cout << "Pour " << t << " litres from container C into container A" << endl;
+    }
+
+    // Print the result.
+    if (x == d) {
+        cout << "We have measured " << d << " litres of water!" << endl;
+        cout << "The containers now contain: " << x << " litres in container C, " << y << " litres in container B, " << z << " litres in container A." << endl;
+    } else {
+        cout << "It is impossible to measure " << d << " litres of water with these containers." << endl;
+    }
+
+    return 0;
+}
