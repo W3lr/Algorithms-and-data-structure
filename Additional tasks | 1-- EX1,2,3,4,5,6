@@ -1,0 +1,87 @@
+Задача 5. (Задача на Поасон за трите съда) Дадени са три съда с вместимост a, b и c литра. Известно е, че a, b и c са естествени числа, c > a > b, c >= a +b – 1. 
+Най-големият от съдовете е пълен, другите два са празни. Да се отмерят d литра, където d е естествено число и 0 < d <= a. 
+Допустими са само такива преливания от един съд в друг, при които става максимално напълване и/или масимално изпразване на някой от съдовете. 
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    // Read the capacities of the containers and the desired amount of water to measure.
+    int a, b, c, d;
+    cout << "Enter the capacities of the containers (in increasing order): ";
+    cin >> b >> a >> c;
+    cout << "Enter the amount of water to measure (less than or equal to " << a << "): ";
+    cin >> d;
+
+    // We assume that the largest container is full, and the other two are empty.
+    int x = c, y = 0, z = 0;
+
+    // We pour water from the largest container to the other two,
+    // maximizing the amount poured and the amount emptied.
+    while (x > d && y < b) {
+        int t = min(x - d, b - y);
+        x -= t;
+        y += t;
+        cout << "Pour " << t << " litres from container C into container B" << endl;
+    }
+    while (x > d && z < a) {
+        int t = min(x - d, a - z);
+        x -= t;
+        z += t;
+        cout << "Pour " << t << " litres from container C into container A" << endl;
+    }
+
+    // Print the result.
+    if (x == d) {
+        cout << "We have measured " << d << " litres of water!" << endl;
+        cout << "The containers now contain: " << x << " litres in container C, " << y << " litres in container B, " << z << " litres in container A." << endl;
+    } else {
+        cout << "It is impossible to measure " << d << " litres of water with these containers." << endl;
+    }
+
+    return 0;
+}
+
+                                                                        Задача 5 със рекурсия
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+bool is_prime(int n) {
+    if (n <= 1) {
+        return false;
+    }
+    for (int i = 2; i <= sqrt(n); i++) {
+        if (n % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void prime_pairs_helper(int i, int n) {
+    if (i > n-4) {
+        return;
+    }
+    if (is_prime(i) && is_prime(i+4)) {
+        cout << i << " " << i+4 << endl;
+    }
+    prime_pairs_helper(i+1, n);
+}
+
+void prime_pairs(int n) {
+    prime_pairs_helper(2, n);
+}
+
+int main() {
+    int n;
+    cout << "Enter a natural number greater than 13: ";
+    cin >> n;
+    prime_pairs(n);
+    return 0;
+}
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
