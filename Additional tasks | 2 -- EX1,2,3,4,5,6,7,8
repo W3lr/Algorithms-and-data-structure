@@ -1,4 +1,55 @@
-          Задача 6. Да се състави функция, която за дадено естествено число n>13 намира всички двойки прости числа по-малки от n, разликата между които е равна на 4.
+              Задача 5. Да се напише функция, която в множеството точки с координати x[i], y[i], разположени в една плоскост, да се намира двете най-близки.
+
+#include <iostream>
+#include <cmath>
+#include <climits>
+
+using namespace std;
+
+struct Point {
+    int x, y;
+};
+
+// Function to calculate distance between two points
+double dist(Point p1, Point p2) {
+    return sqrt(pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2));
+}
+
+// Function to find the two closest points in a set of points
+void findClosestPoints(Point points[], int n) {
+    double minDist = INT_MAX;
+    Point p1, p2;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            double d = dist(points[i], points[j]);
+
+            if (d < minDist) {
+                minDist = d;
+                p1 = points[i];
+                p2 = points[j];
+            }
+        }
+    }
+
+    cout << "The two closest points are (" << p1.x << ", " << p1.y << ") and (" << p2.x << ", " << p2.y << ")" << endl;
+    cout << "Their distance is " << minDist << endl;
+}
+
+int main() {
+    // Example usage
+    Point points[] = {{1, 1}, {2, 3}, {4, 2}, {5, 6}};
+    int n = sizeof(points) / sizeof(points[0]);
+    findClosestPoints(points, n);
+
+    return 0;
+}
+
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+         Задача 6. Да се състави функция, която за дадено естествено число n>13 намира всички двойки прости числа по-малки от n, разликата между които е равна на 4.
 
 #include <iostream>
 #include <cmath>
