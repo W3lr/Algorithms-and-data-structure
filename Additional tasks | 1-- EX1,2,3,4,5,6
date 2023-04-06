@@ -42,6 +42,11 @@ int main() {
     cout << "Size of region: " << size << endl;
     return 0;
 }
+
+r-1 represents the row index of the cell above the current cell in the grid.
+c represents the column index of the current cell.
+size is a reference variable that holds the current size of the region being explored.
+grid is the 2D array representing the grid/matrix.
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------#
